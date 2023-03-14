@@ -1,51 +1,61 @@
 package com.ntu.sctp.group1.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 
-
-
+@AllArgsConstructor
+@NoArgsConstructor
+@RequiredArgsConstructor
+@Getter
+@Setter
 @Entity
-@Table(name="volunteer")
-public class Volunteer {
+    @Table(name="volunteer")
+    public class Volunteer {
 
-    @GeneratedValue (strategy = GenerationType.IDENTITY)
-    @Id
-    private Integer id;
+            @Id
+            @GeneratedValue(strategy = GenerationType.IDENTITY)
+            private Long id;
 
-    @Column(name = "name")
-    private String name;
+            @NonNull
+            @NotBlank(message = "Name cannot be blank!")
+            @Column(name = "name", nullable = false)
+            private String name;
 
-    @Column(name = "age")
-    private Integer age;
+            // @NonNull
+            // @NotBlank(message = "Age cannot be blank!")
+            @Column(name = "age")
+            private Integer age;
 
-    public Volunteer() {};
-    public Volunteer(Integer id, String name, Integer age) {
-        this.id = id;
-        this.name = name;
-        this.age = age;
-    }
+            @NonNull
+            @NotBlank(message = "Email cannot be blank!")
+            @Column(name = "email", nullable = false)
+            private String email;
 
-    public Integer getId() {
-        return id;
-    }
+            @Column(name = "contact")
+            private String contact;
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+            @Column(name = "education")
+            private String education = "";
 
-    public String getName() {
-        return name;
-    }
+            @Column(name = "language")
+            private String language;
 
-    public void setName(String name) {
-        this.name = name;
-    }
+            @Column(name = "past_experience")
+            private String pastExperience = "";
 
-    public Integer getAge() {
-        return age;
-    }
+            @Column(name = "criminal_record")
+            private boolean hasCriminalRecord;
 
-    public void setAge(Integer age) {
-        this.age = age;
-    }
+            @Column(name = "referrer_name")
+            private String referrerName = "";
+
+            @Column(name = "referrer_contact")
+            private String referrerContact = "";
+
 }
